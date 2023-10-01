@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>background-Change-on-click</title>
+</head>
+<body>
+    <input type="button" value="Click to set paragraph background color" onclick="set_background()">
+    <p id="paragraph1">w3resource JavaScript Exercises</p>
+    <p id="paragraph2">w3resource PHP Exercises</p>
+
+    <script>
+        function set_background() {
+          // Get a reference to the paragraph elements
+          var paragraph1 = document.getElementById("paragraph1");
+          var paragraph2 = document.getElementById("paragraph2");
+        
+          // Set the background color of the paragraphs
+          paragraph1.style.backgroundColor = "blue"; // Change "blue" to your desired color
+          paragraph2.style.backgroundColor = "yellow"; // Change "yellow" to your desired color
+        }     
+    </script>
+</body>
+</html>
