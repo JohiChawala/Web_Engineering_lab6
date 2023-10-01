@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Alert_Message_function</title>
+</head>
+<body>
+    <p><a id="w3r" type="text/html" hreflang="en-us" rel="nofollow" target="_self"
+        href="http://www.w3resource.com/">w3resource</a></p> <button
+        onclick="getAttributes()">Click here to get attributes value</button>
+
+
+        <script>
+           function getAttributes() {
+                // Get the link element by its id
+                var linkElement = document.getElementById("w3r");
+
+                // Get the values of the specified attributes
+                var hrefValue = linkElement.getAttribute("href");
+                var hreflangValue = linkElement.getAttribute("hreflang");
+                var relValue = linkElement.getAttribute("rel");
+                var targetValue = linkElement.getAttribute("target");
+                var typeValue = linkElement.getAttribute("type");
+            
+              // Display the attribute values
+                alert("href: " + hrefValue +
+                        "\nhreflang: " + hreflangValue +
+                        "\nrel: " + relValue +
+                        "\ntarget: " + targetValue +
+                        "\ntype: " + typeValue);
+            }
+        </script>    
+</body>
+</html>
