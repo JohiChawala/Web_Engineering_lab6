@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tic Tac Toe</title>
+    <style>
+        body {
+    font-family: Arial, sans-serif;
+    text-align: center;
+    background-color: #f0f0f0;
+    margin: 0;
+    padding: 0;
+}
+
+.container {
+    max-width: 400px;
+    margin: 0 auto;
+    padding: 20px;
+    background-color: #fff;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+    border-radius: 5px;
+}
+
+.board {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-gap: 5px;
+    margin-top: 20px;
+}
+
+.cell {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100px;
+    height: 100px;
+    font-size: 24px;
+    background-color: #eee;
+    cursor: pointer;
+}
+
+.status {
+    margin-top: 20px;
+    font-size: 18px;
+}
+
+button {
+    display: block;
+    margin: 20px auto;
+    padding: 10px 20px;
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: #0056b3;
+}
+
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Tic Tac Toe</h1>
+        <div class="board" id="board">
+            <!-- Cells will be generated here using JavaScript -->
+        </div>
+        <div class="status" id="status">Player X's turn</div>
+        <button id="reset">Reset Game</button>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+    const board = document.getElementById('board');
+    const status = document.getElementById('status');
+    const message = document.getElementById('message'); // Get the message element
+    const resetButton = document.getElementById('reset');
+    let currentPlayer = 'X';
+    let gameOver = false;
+
+    // Create the game board
+    for (let i = 0; i < 9; i++) {
+        const cell = document.createElement('div');
+        cell.classList.add('cell');
+        cell.dataset.index = i;
+        cell.addEventListener('click', handleCellClick);
+        board.appendChild(cell);
+    }
+
+    // Handle cell click
+    function handleCellClick(event) {
+        if (gameOver) return;
+        const cell = event.target;
+        const index = cell.dataset.index;
+
+        if (cell.textContent === '') {
+            cell.textContent = currentPlayer;
+            cell.classList.add('occupied');
+            checkWinner();
+            togglePlayer();
+        }
+    }
+
+    // Function to display a win message
+    function showWinMessage() {
+        message.textContent = `Player ${currentPlayer} wins!`;
+    }
+
+    // Check for a win
+    function checkWinner() {
+        const winPatterns = [
+            [0, 1, 2], [3, 4, 5], [6, 7, 8], // Rows
+            [0, 3, 6], [1, 4, 7], [2, 5, 8], // Columns
+            [0, 4, 8], [2, 4, 6]             // Diagonals
+        ];
+
+        for (const pattern of winPatterns) {
+            const [a, b, c] = pattern;
+            if (getCell(a) && getCell(a) === getCell(b) && getCell(b) === getCell(c)) {
+                showWinMessage(); // Display win message
+                gameOver = true;
+                return;
+            }
+        }
+
+        if ([...document.querySelectorAll('.cell')].every(cell => cell.textContent !== '')) {
+            message.textContent = "It's a draw!";
+            gameOver = true;
+        }
+    }
+
+    // Get the content of a cell by index
+    function getCell(index) {
+        return document.querySelector(`[data-index="${index}"]`).textContent;
+    }
+
+    // Toggle the current player
+    function togglePlayer() {
+        currentPlayer = currentPlayer === 'X' ? 'O' : 'X';
+        status.textContent = `Player ${currentPlayer}'s turn`;
+    }
+
+    // Reset the game
+    resetButton.addEventListener('click', function () {
+        [...document.querySelectorAll('.cell')].forEach(cell => {
+            cell.textContent = '';
+            cell.classList.remove('occupied');
+        });
+        currentPlayer = 'X';
+        status.textContent = `Player ${currentPlayer}'s turn`;
+        message.textContent = ''; // Clear the message
+        gameOver = false;
+    });
+});
+// Function to display a win message
+function showWinMessage() {
+    console.log(`Player ${currentPlayer} wins!`); // Add this line for debugging
+    message.textContent = `Player ${currentPlayer} wins!`;
+}
+    </script>
+</body>
+</html>
