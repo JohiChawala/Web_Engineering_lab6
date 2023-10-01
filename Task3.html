@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JS DOM paragraph style-Using-css-properties</title>
+</head>
+<body>
+    <p id='text'>JavaScript Exercises - w3resource</p>
+    <div>
+        <button id="jsstyle" onclick="js_style()">Style</button>
+    </div>
+    <script>
+        function js_style() {
+          // Get the paragraph element by its id
+          var paragraph = document.getElementById('text');
+        
+          // Modify the style properties
+          paragraph.style.fontSize = '20px';       // Set the font size
+          paragraph.style.fontFamily = 'Arial';     // Set the font family
+          paragraph.style.color = 'blue';           // Set the text color
+          paragraph.style.backgroundColor = 'yellow'; // Set the background color
+          paragraph.style.textAlign = 'center'; // Center-align the text
+          paragraph.style.fontWeight = 'bold'; // Make the text bold
+          paragraph.style.textDecoration = 'underline'; // Underline the text
+          paragraph.style.textTransform = 'uppercase'; // Convert text to uppercase
+          paragraph.style.border = '2px solid red'; // Add a red border with 2px width
+          paragraph.style.padding = '10px'; // Add 10 pixels of padding inside the element
+          paragraph.style.margin = '20px'; // Add 20 pixels of margin outside the element
+          paragraph.style.lineHeight = '1.5'; // Set line height to 1.5 times the font size
+          paragraph.style.boxShadow = '2px 2px 5px rgba(0, 0, 0, 0.2)'; // Add a shadow effect
+          paragraph.style.width = '200px'; // Set the width to 200 pixels
+         paragraph.style.height = '100px'; // Set the height to 100 pixels
+
+        }
+    </script>    
+</body>
+</html>
